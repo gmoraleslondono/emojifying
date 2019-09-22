@@ -1,0 +1,127 @@
+<!-- CONTROL FLOW -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.css"
+    />
+    <link rel="stylesheet" href="css/debug.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+      :root {
+        font: 1rem/1.175 "BlinkMacSystemFont", -apple-system, "Roboto",
+          sans-serif;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        font-weight: 900;
+        font-size: 8rem;
+        color: hsl(0, 0%, 100%);
+        background: hsl(240, 100%, 67%);
+        user-select: none;
+      }
+
+      img {
+        width: 8rem;
+        height: 8rem;
+        vertical-align: calc(-0.12109375em);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- example 1 -->
+      <!-- <p v-html="wizard"></p> -->
+
+      <!-- example 2 -->
+      <!-- <p
+        v-if="wizard == harry"
+        v-html="wizard + ' ' + owl"
+      ></p>
+      <p
+        v-if="wizard == ron"
+        v-html="wizard + ' ' + mouse"
+      ></p>
+      <p
+        v-if="wizard == hermione"
+        v-html="wizard + ' ' + cat"
+      ></p> -->
+
+      <!-- example 3 -->
+      <!-- <p
+        v-html="wizard + ' ' + (
+            wizard == harry    ? owl      :
+            wizard == ron      ? mouse    :
+            wizard == hermione ? cat : ''
+        )"
+      ></p> -->
+
+      <!-- example 4 -->
+      <!-- we could use a div to wrap the p group, but in vue you use the template tag to be idiomatic correct -->
+      <!-- why display: none?? -->
+      <!-- <template v-if="show" style="display: none;">
+        <p v-html="harry    + ' ' + owl     "></p>
+        <p v-html="ron      + ' ' + mouse   "></p>
+        <p v-html="hermione + ' ' + cat"></p>
+      </template> -->
+
+      <!-- example 5 -->
+      <p
+        v-for="wizard in wizards()"
+        v-html="wizard.name + ' ' + wizard.pet"
+      ></p>
+
+    </div>
+
+    <script>
+      "use strict";
+
+      // emojify returns the corresponding emoji image
+      function emojify(name) {
+        var out = `<img src="emojis/` + name + `.png">`;
+        return out;
+      }
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          show: true,
+          wizard: "",
+          harry: emojify("harry"),
+          owl: emojify("owl"),
+          ron: emojify("ron"),
+          mouse: emojify("mouse"),
+          hermione: emojify("hermione"),
+          cat: emojify("cat")
+        },
+        methods: {
+          wizards: function() {
+            return [
+              { name: this.harry, pet: this.owl },
+              { name: this.ron, pet: this.mouse },
+              { name: this.hermione, pet: this.cat }
+            ];
+          }
+        }
+      });
+
+      /* Here we assign a value to wizard in the example 4 and 5 it is not used*/
+      app.wizard = app.harry;
+
+    </script>
+  </body>
+</html>
