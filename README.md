@@ -1,2 +1,3 @@
 # emojifying
-Vue tutorial projects
+
+🎨 Color selector using emojis using Vue.js
