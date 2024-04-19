@@ -43,11 +43,38 @@
           ". . . ."
           ". . . .";
         /* spacing */
-        padding: 96px;
+        padding: 10%;
         grid-gap: 32px;
         /* fullscreen */
         width: 100vw;
         height: 100vh;
+      }
+
+      
+      @media screen and (max-width: 780px) {
+        #app {
+           /* grid:3x4 */
+          grid-template-areas:
+          ". . ."
+          ". . ."
+          ". . ."
+          ". . .";
+          padding: 6%;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        #app {
+           /* grid:2x6 */
+          grid-template-areas:
+          ". ."
+          ". ."
+          ". ."
+          ". ."
+          ". ."
+          ". .";
+          padding: 6%;
+        }
       }
 
       img {
